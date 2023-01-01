@@ -1,0 +1,141 @@
+---
+layout: post
+title:  "Review of Coding theory"
+date:   2019-12-28 14:09:14 +0800
+categories: math
+---
+
+出完分来回顾一下这门课，ftgg人真的好，只是有时候上课跳的东西有点多。编码理论基础主要内容还是有限域，对实际的纠错模型没怎么涉及，这样一想把这门课当Galois理论的前置课程也不错- -。 学这门课还顺便看了点射影几何，也算收获之一吧。
+
+## Chapter 4. Linear code
+
+# MacWilliams identity
+
+$$W_{C^\perp}(x, y)=\frac{1}{|C|}W_C(x +(p−1)y,x − y)$$
+
+This identity is in fact an analogue to the Poisson Summation Formula. In discrete Fourier transformation, We have:
+
+Lemma 1: $$ \sum_{v\in C\perp}f(v)=\frac{1}{\vert C \vert }\sum_{u\in C}\hat{f}(u)$$
+
+Pf: We only need to prove that for $$v \notin C^\perp$$, $$\sum_{u\in C} \xi^{u\cdot v}=0$$. We choose $$c \in C$$,s.t $$c\cdot v=1$$, then $$\sum_{u\in C} \xi^{u\cdot v}=\sum_{u\in C} \xi^{(u+c)\cdot v}=\xi\sum_{u\in C} \xi^{u\cdot v}$$.
+
+Lemma 2: $$ F(f(x,y,u),v)=F(x^{n-wt(u)}y^{wt(u)})=(x+(p-1)y)^{n-wt(v)}(x-y)^{wt(v)}$$
+
+Pf: $$\sum_{u\in C}x^{n-wt(u)}y^{wt(u)}\xi^{u\cdot v}=\prod(\sum_{u_i\in F_q}x^{1-wt(u_i)}y^{wt(u_i)}\xi^{u_i})=\prod(x+(p-1)y)^{1-wt(u_i)}(x+(p-1)y)^{wt(u_i)}$$
+
+
+## Chapter 5. Bounds in code theory
+
+
+Let $$A_q(n,d)$$ be the maximum size of a code with n length and distance d. Sometimes it's convenient to define $$A_q(n,d)$$ as the maximum size of a code whose distance is bigger than d. To prove the equivalence, we only need to note that $$A_q(n,d+1) \leq A_q(n,d)$$(If d=1, then it's trivial, or we could replace one bit of two codewords whose distance are d with 0, since d is bigger than 1, it's a bijection).
+
+# Packing and Covering bounds.
+
+$$\frac{q^n}{\sum^{d-1}_{i=0} {n \choose i} (p-1)^i} \leq A_q(n,d)\leq \frac{q^n}{\sum^{\lfloor \frac{d-1}{2}\rfloor}_{i=0} {n \choose i} (p-1)^i}$$
+
+Pf: Consider the error-detect and correct distance.
+
+Remark: the codes reach the latter bound is called perfect codes, the bound is also called hamming bounds.
+
+# Hamming Code 
+
+Hamming code is a [2^n-1,2^n-1-n,3] binary code whose check matrix's columns are the $$2^n-1$$ nonzero column. And it's a perfect code.
+
+
+# Singleton bound
+
+$$A_q(n,d)< p ^ {n-d+1}$$
+
+Pf: Consider the projection f to ANY n-d+1 coordinates, and f is an injection.
+
+Remark: the codes reach this bound is called MDS(maximum distance separable) code. This bound can be interpret as $$\mathcal{R}(C)+\delta(C) \leq 1$$
+
+If a linear code is a MDS code. We shall have:every set of n−k columns of H is linearly independent.
+
+# MDS code
+
+Property 1: MDS code can be projected to a k-dimension subspace.
+
+Pf:  The projection to any coordinates sets S whose size is k is an injection. But the image contains at most $$q^k$$ elements.
+
+Property 2: MDS code has a unique weight distribution
+
+Pf: We only need to note that every MDS code owns a fixed number of code c which is zero in a set T, therefore the number of codes whose weight is bigger than k is determined.
+
+The polynomial code, which is in fact a generalized Reed-Solomon code, is a MDS code. And in the case n=q, it is a Reed-Solomon code. So $$C_k^\perp=C_{q-k}$$. 
+
+
+
+
+## Chapter 6. Constructions of linear codes
+
+
+# Reed-Muller code 
+
+Definition: Reed-Muller code RM(r,n) consists of all the code of following form: $$(f(v_1),\dots,f(v_{2^n}))$$, where f is a boolean function whose order is smaller than r+1.
+
+In fact, the boolean function's sets over $$F_ q ^ n$$ is a linear space. And the bases are $$X_1^{a_1}\dots X_n^{a_n},a_i \in {0,1}$$, $$X_i$$ is the projection to ith coordinate. We only need to note that $$g_c(x) = \mathbf{1_c} = (x_1 + c_1 +1) \dots (x_n+c_n+1) $$.
+
+The RM(1,n) are just the dual code of extended Hamming code. And we can show that the dual code of RM(r,n) is RM(n-1-r,n), $$d(RM(r,n))=2^{n-r}$$. The last identity can be derived from $$RM(r,n)=(RM(r,n-1)\vert RM(r,n-1)+RM(r-1,n-1))$$.
+
+
+## Chapter 3. Finite field 
+
+# Minimal polynomial and primitive element
+
+T1: Every finite filed $$F_q$$ has a primitive element.
+
+Pf: We can use Mobius function to give an elegant proof. But I rather use a elementary proof. Suppose the largest common multiple of all element's order is m, then $$m\vert q-1$$. But all q-1 element is the root of $$x^m-1$$, so m=q-1.
+
+If f is the monic polynomial of minimum degree s.t. $$f(\beta)=0$$, we say f is the minimal polynomial of $$\beta$$, denote it as $$f_\beta$$. Note that f is unique, or $$(f_1-f_2)\beta=0$$ leads to a contradiction.
+
+T2:$$x^q-1$$ can be factored to the multiple of minimal polynomial
+
+Pf:If $$x^q-1$$ can be written as $$x^q-1=\prod g_i(x)$$, then for any given $$\beta$$ is a root of $$g_k(x)$$. Let  $$h_\beta$$ be the minimal polynomial, then $$h\vert g_k$$, but $$g_k$$ is irreducible. so $$g_k=h$$.
+
+We can use the cyclotomic cosets to write the irreducible polynomial explicitly.
+
+T3: Every finite field is isomorphic to a field $$F_{g(x)}$$
+
+Pf: First we construct an isomorphism from the linear combination of any $$\beta$$ to $$F_p[x]/m_\beta(x)$$, that is $$\bar{f}->f(\beta)$$. Easy to check it's a bijection. Furthermore, because the factorization of $$x^{q-1}-1$$ is unique, every finite field is isomorphic.
+
+
+## Chapter 7. Cyclic code
+
+Consider a principal ideal domain $$F_p[x]/x^n-1$$, all its ideals are of the form (g(x)), where $$g(x)\vert x^n-1$$. There exists an vector space isomorphism $$\phi$$ from this domain to $$F_p^n$$. Cyclic code is a code which  satisfies that $$f(x)\in C \implies xf(x)\in C$$.
+
+T1: If C is cyclic, $$\phi(C)$$ is an ideal of $$F_p[x]/x^n-1$$.
+
+So there exists a generator polynomial g of C, and $$g\vert x^n-1$$. Suppose that deg(g)=m,
+
+T2: $$g,xg,\dots,x^{n-m-1}g$$ form a basis of C. As a corollary dim(C)=n-deg(g).
+
+Pf: Easy to check they are linear independent. And any elements hg can be written as rg, where r is the remainder of h.
+
+Now we define the the parity-check polynomial of C. $$x^n-1=hg.\tilde{h}=x^{deg(h)}h(x^{-1})$$.i.e. $$h=h_0x^{n-m}+h_1x^{n-m-1}+\dots+h_{n-m}$$. Because $$\tilde{h}\tilde{g}=x^ng(x^{-1})h(x^{-1})=-(x^n-1)$$, h is a also factor of $$x^n-1$$
+
+T3: $$C^{\perp}$$ is also a cyclic code. And its generator polynomial is $$\tilde{h}$$.
+
+Pf: $$gh=x^n-1$$, the convolution $$\sum_{i} h_ig_{k-i}$$ is 0.
+
+Hamming code is equivalent to a cyclic code. We only need to write its parity check matrix's ith column as the vector representation of $$\gamma^i$$. It's parity-check polynomial is the minimal polynomial of $$\gamma$$.
+
+# Cyclic codes of length n gcd(p,n)=1
+
+$$gcd(p,n)\neq 1 \implies n=p^k$$, so the factorization is trivial. If we want to factorize $$x^n-1$$, we only need to find k s.t. $$n|p^k-1$$, then $$x^n-1|x^{p^k-1}-1$$. The roots are consists of $$\gamma^{i\frac{p^k-1}{n}}$$. After determining the factorization, we can write all the ideals, hence determines all the cyclic codes. We can also use the zeros $$\beta_i$$ to write the "check matrix" $$\begin{pmatrix}1 & \beta_1 &\dots  &\beta_1^{n-1} \\ 
+\dots &\dots &\dots  &\dots \\ 
+\dots &\dots &\dots  &\dots \\ 
+1 & \beta_r &\dots  &\beta_r^{n-1} \\ \end{pmatrix}$$.
+
+We can also use the quotient of $$x^m,\dots,x^{n-1}$$, i.e. $$x^m-r_m(x),\dots,x^{n-1}-r_{n-1}(x)$$ to construct a generator matrix contains $$I_{m-n+1}$$, which allow us to write parity-check matrix easily.
+
+## BCH code
+
+A BCH code of length n and designed distance $$\sigma$$ over $$F_p$$ is a p-ary cyclic code with $$Z(C)=C_a\cup C_{a+1}\cup\dots \cup C_{a+\sigma-2}$$. Its generator matrix is the lcm of minimal polynomial of these zeros. We can use the Vandermonde determinant to check if its distance is greater than $$\sigma$$.
+
+
+## Reference 
+
+[The weight distribution of MDS code](https://wiki.cse.buffalo.edu/cse545/content/mds-codes)
+
+[Stanford lecture notes in finite fields](https://web.stanford.edu/class/ee392d/Chap7.pdf)

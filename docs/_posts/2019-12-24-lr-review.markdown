@@ -1,0 +1,78 @@
+---
+layout: post
+title:  "Review of Regression Analysis"
+date:   2019-12-24 16:15:14 +0800
+categories: math
+---
+
+## Chapter 4. Hypothesis Test
+
+# General Linear Hypothesis
+
+Use the likelihood-ratio test we derive the statistic $$\frac{RSS_H-RSS}{RSS}$$.
+
+$$RSS_H-RSS=(A\hat{\beta}-b)'(A(X'X)^{-1}A')^{-1}(A\hat{\beta}-b)$$
+
+In outlier model, $$\tilde{\beta}-\hat{\beta}=\frac{(X'X)^{-1}x_i\hat{e_i}^2}{1-h_{ii}}$$. And remember in the alternative model it contains p+2 coefficients to be estimated.
+
+## Chapter 5. Model Selection
+
+# Schur Complement 
+
+Let X be a symmetric matrix given by $$X=\begin{pmatrix}A&B\\B^{\mathsf {T}}&C\end{pmatrix}$$
+Let X/A be the Schur complement of A in X; i.e., $$X/A=C-B^{\mathsf {T}}A^{-1}B$$,Then X is positive definite if and only if A and X/A are both positive definite.
+
+Pf: For fixed u, the minimum of  $$u^{\mathsf {T}}Au+2v^{\mathsf {T}}B^{\mathsf {T}}u+v^{\mathsf {T}}Cv$$ is a quadratic of v, the matrix is X/A.
+
+# BIC
+
+The BIC is formally defined as $$ \mathrm {BIC} =\ln({\widehat {L}})-\ln(n)k/2$$. The last term come from the approximate variance of maximum likelihood estimator.
+
+
+## Chapter 6. Logistic Regression 
+
+
+## Chapter 7. Variance Analysis
+
+# One-way analysis of variance 
+
+In one-way analysis of variance the variables are just dummy variables , and the main purpose is to find a statistic to assess $$H_0:\mu_1=\dots=\mu_k$$. And this statistic is derived from the likelihood-ratio test.
+
+Under the assumption of normality, the likelihood function of coefficients $$\beta,\sigma$$ is $$\frac{1}{\sqrt{2\pi}^n\sigma^n}exp(\frac{R^2}{2\sigma^2})$$. So the solutions are $$\beta=(X'X)X'y,\sigma^2=R^2/n$$. The maximum of log likelihood function is $$C-\frac{nln(R^2/n)}{2}+\frac{n}{2}$$.
+
+Now we need to find a projective matrix to describe $$R^2$$. The matrix for one-way analysis of variance is $$B=\begin{bmatrix}
+1/n_1 &1/n_1 &\dots  &0 \\ 
+1/n_1 &1/n_1 &\dots  &0 \\ 
+0 &0 &1/n_k &1/n_k \\ 
+0 &0 &1/n_k &1/n_k \\ 
+\end{bmatrix}$$		. It's easy to check this is a projective matrix , furthermore it's an extersion to the matrix $$A=\begin{bmatrix}
+1/n  &\dots  &1/n \\ 
+\dots &\dots  &\dots \\ 
+1/n  &\dots  &1/n \\ 
+\end{bmatrix}$$.
+
+
+So we have the statistic $$ln(\frac{e'(I-B)e}{e'(I-A)e})$$, and we want to maximize it. We have the oOrthogonal decomposition $$I=A+B(I-A)+I-(A+B(I-A))=A+(B-A)+(I-B)$$. So we want to maximize $$\frac{e'(I-B)e}{e'(B-A+I-B)e}$$, that is to minimize $$\frac{e'(B-A)e}{e'(I-B)e}$$. Under the $$H_0$$ , it's a F(k-1,n-k) statistic multiply a scalar.
+
+# Two-way analysis of variance 
+
+Similarly we only need to find the projective matrix to finish the likelihood-ratio	test. Suppose that we have two factor and we design experiment for each pair of treatment (i,j), which means $$k_1k_2=n$$. And define projective matrix B,C the same way. $$B=\begin{bmatrix}
+1/n_1 &1/n_1 &\dots  &0 \\ 
+1/n_1 &1/n_1 &\dots  &0 \\ 
+0 &0 &1/n_k &1/n_k \\ 
+0 &0 &1/n_k &1/n_k \\ 
+\end{bmatrix}$$
+
+$$C=\begin{bmatrix}
+1/n_1 &0&\dots&1/n_1 &\dots  &0 \\ 
+\dots &\dots &\dots  &\dots \\ 
+1/n_1 &0&\dots&1/n_1 &\dots  &0 \\ 
+\dots &\dots &\dots &\dots \\ 
+1/n_1 &0&\dots&1/n_1 &\dots  &0 \\ 
+0 &/dots &1/n_k&/dots &1/n_k \\ 
+\end{bmatrix}$$
+
+We have BC=A. So $$dim(Im(B)\cup Im(C))=dim(Im(B))+dim(Im(C))-dim(Im(B)\cap Im(C))=dim(Im(B))+dim(Im(C))-1$$, which means $$dim(Im(I-B)(I-C)))=dim(Im(I-B-(C-A)))=(k_1-1)(k_2-1)$$ 
+
+So we have the statistic $$\frac{e'(I-B)(I-C)e}{e'(I-C)e}=\frac{e'(I-B)(I-C)e}{e'(I-C)(I-B+B)e}$$, and we want to maximize it, that is to minimize $$\frac{e'(B-A)e}{e'(I-B-C+A)e}$$. Under the $$H_0$$, it's a $$F(k_1-1,(k_1-1)(k_2-1))$$ statistic.
+

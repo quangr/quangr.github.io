@@ -1,0 +1,85 @@
+---
+layout: post
+title:  "Real Analysis and Probability Theory"
+date:   2019-09-17 12:15:14 +0800
+categories: math
+---
+
+
+## The abstract measure theory
+
+
+An abstract measure space $$(X,M,\mu)$$ is s set X equipped with a $$\sigma$$-algebra $$M$$ of "measurable" sets, and a measure function $$\mu$$ over M. $$\mu$$ should satisfy $$\mu(\cup E_n)=\sum_1^\infty\mu(E_n)$$, $$\{E_i\}$$ is a countable family of disjoint sets in $$M$$.
+
+* exterior measures
+
+An exterior measures is a real function $$\mu _ * $$ on X that satisfies the following properties:
+(i) $$\mu_*(\emptyset)=0$$(ii) If $$E_1\subset E_2$$,$$\mu_*(E_1)\leq \mu_*(E_2)$$(monotonic) (iii)(subadditive) $$\mu(\cup E_n)\leq \sum_1^\infty\mu(E_n)$$
+
+Given a exterior measures, we can use Caratheodory's theorem to construct a measure space. The Caratheodory measurable sets $$M$$ would be the sets which satisfy $$\mu_*(A)\geq\mu_*(E\cap A)+\mu_*(E^C\cap A)$$ for all $$A\subset X$$.
+
+If the X is endowed with a metric and there exists a metric exterior measure, then we can define the Borel sets and Borel measure just as we did in $$R^d$$.The open sets'$$\sigma$$-algebra is called Borel sets. We can prove that all Borel sets is measurable. 
+
+* The extersion theorem
+
+The extersion theorem says that if $$\mu_0$$ is a premeasure on an algebra A, we can define exterior measure on X, of which the restriction coincides with $$\mu_0$$.
+
+In fact, a well defined or normalized increasing function F on R can always define a unique measure $$\mu$$(denoted by dF) on the Borel sets on R. The normalizition often requried the right-continuity at every point, which guarantees that the exterior measure (de facto also a metric exterior measure) $$\mu_*((a,b]))=F(b)-F(a)$$.
+
+# integration over abstract measure
+
+We can totally imatate the way we construct Lebegue integral to define the integration over abstract measure. The first thing is to define simple function $$\sum^N_1a_k\chi_{E_k}$$, where $$E_K$$ are measurable sets of finite measure.Then we use simple functions to approximate measurable functions. We also have Fatou's lemma, monotone convergence, Dominated convergence theorem. The key lemma to establish those properties is the Beppo levi lemma, here is an elegant proof of it.
+
+Beppo levi lemma: For any increasing non-negetive simple function sequence $${f_n}$$, if $$f_n\to f$$,then $$lim\int_E f_n d\mu=sup\{\int_E g d\mu :\text{g is a simple function and} g\leq f\}$$
+
+
+Proof: For any $$g\leq f$$, let $$E_k=\{x\in E :f_k\geq cg\}, 0 < c < 1$$. We have $$E_k\uparrow\to E$$. So $$\int_{E} f_{k}(x) \mathrm{d} x \geqslant \int_{E_{k}} f_{k}(x) \mathrm{d} x \geqslant \int_{E_{k}} \operatorname{cg}(x) \mathrm{d} x=c \int_{E_{k}} g(x) \mathrm{d} x$$.
+Let $$k\to\infty$$ then $$c\to 1$$.(周民强.实变函数论)
+
+Now we can define the Lebegue-Stieltjes integral. If F is a normalized increasing function, the we define $$\int g dF=\int g d\mu$$,in which $$\mu$$ is the measure define by F, g is a measurable function with respect to $$\mu$$.
+
+The value of the integrals can be calculated directly if:
+
+(i) F is an absolutely continuous function on [a,b], then $$\int_a^b f(x)dF(x)=\int_a^bf(x)F'(x)$$(consider that if F is absolutely continuous, $$\int^b_a F'(x)dx=F(b)-F(a)$$)
+
+(ii)F is a pure jump function , then $$\int_a^b f(x)dF(x)=\sum_1^\infty f(x_n)\alpha_n$$.
+
+
+
+# Radon-Nikodym theorem
+
+This theorem is basically a generalization of absolutely continuous and differentiation. A (signed) measure $$\mu$$ is absolutely continuous with the respect of another measure $$\lambda$$(both define in $$(X,M)$$), if there exists a $$\lambda$$ measurable function f such that $$\mu(E)=\int_E fd\lambda$$. This theorem claims that if $$\mu(E)=0, whenever \lambda(E)=0$$,then $$\mu$$ is absolutely continuous with the respect of another measure $$\lambda$$, and f is unique. Particularly, if $$\mu(E)\leq\lambda(E)$$ for any $$E\in M$$, $$\mu$$
+
+# Probability Distribution in $$R^r$$
+
+* Definition:A probability space is a triple$$(\mathfrak{S}, \mathfrak{A}, \mathbf{P})$$ of a sample space $$\mathfrak{S}$$,a $$\sigma$$-algebra$$\mathfrak{A}$$ of sets in it, and a probability measures P on $$\mathbf{P}$$ on $$\mathfrak{A}$$.(probability measure is a measure that map the complete set to 1)
+
+
+The extersion theorem help us to construct a product space for two probability space. Let A be sets of finite union of the product of two measurable sets from each space. Clearly A is a algebra, and we define premeasure as   $$\mathbf{P}(A^{(1)}, A^{(2)})=\mathbf{P}^{(1)}(A^{(1)}) \mathbf{P}^{(2)}(A^{(2)})$$.
+
+The measurable function in this product space is actually the completement of the linear combinations of functions of the form $$w\left(x^{(1)}, x^{(2)}\right)=u\left(x^{(1)}\right) \cdot v\left(x^{(2)}\right)$$.
+
+
+In R, given a distribution function F, according to abstract measure theory, there is a unique measure $$\mu$$ on the Borel sets on R. In general, any distribution function induce a probability measure on the $$\sigma$$- algebra of Borel sets in $$R^r$$, and thus defines a probability space.This construction can be generalized into $$R^k$$ or any space that has a net.
+
+# The existence of infinity independant variables.
+
+We can choose the unit interval and Borel measure as the probability space, and let the $${X_k}$$ be the kth number of X's binary fraction. It's easy to examine the independance. And rename $${X_k}$$ with $${B_{i,j}}$$(list them triangularly), let $$Y_k=\sum_{i=1}^\infty B_k,i$$, so $${Y_k}$$ are independant uniform varibles, the funtion of which can satisfied any distribution.
+
+## The definition of conditional variables distribution function and expectation
+	
+It will be a little surprised that we can define the expectation of a conditional variable without consideration of its distribution. So define the expectation from the intuition of average. Given a probability space $$(\mathfrak{S}, \mathfrak{A}, \mathbf{P})$$ and a sub$$\sigma$$-algebra $$\mathfrak{H}\in\mathfrak{A}$$ and $$H\in\mathfrak{H}$$ , we define the conditional expectation of X as a variable satisfies $$\int_G E(X\|H)dP=\int_G XdP , \forall G\in\mathfrak{H}$$. The existence of such variable can be verified by Radon-Nikodym theorem, since the right side of the equation can be regarded as a signed measure which is absolutely continuous with the regard of P(both measureS are restricted in $$\mathfrak{H}$$).In the case of a given variable Y, we choose the forword measure defined $$Y^{-1}(E) , E \in \mathfrak{B}$$ as sub$$\sigma$$-algebra .
+
+
+The definition of distribution function require a certain property of the variable's image space. Take real variable as example, we can always define a function $$\mu(H,\omega),H\in\mathfrak{B}$$ s.t. 
+
+(i) $$\forall \omega \in \Omega,\mu(\dot,\omega)$$ is a probability measure on $$\mathfrak{B}$$.
+
+(ii) $$\forall H \in \mathfrak{B},G \in \mathfrak{A}, \int_G \mu(H,x) dP=P(H\cap G)$$. 
+
+
+We can choose a class of function that satisfying property (ii), for $$P(A\cap G)\leq P(G)$$ and Radon-Nikodym theorem ensure such function class's existence. And this class of function are almost a distribution function except for a null sets. The property we shall use is the countable dense sets in R(separable). And define the $$F(r,\omega)=P(X\leq r,\omega)$$ first, except the erratic points in $$\Omega$$(null measure), and define a measure for the $$\pi$$-system $$(-\infty,r]$$, which can extend to Borel sets of R.
+
+## Kolmogorov's Existence Theorem
+
+This is a theorem to prove the existence of stochastic processes. The interesting part is the sample space is actually the space of all the real functions in T, which is noted by $$R^T$$,and the measurable sets is the $$\sigma$$-algebra of the sets of finite dimension Borel measurable functions.

@@ -1,0 +1,274 @@
+---
+layout: post
+title:  "Review of Quantum Mechanics"
+date:   2020-06-12 21:09:14 +0800
+categories: math
+---
+
+不重要的一学期又结束了。又到了复习时间了!这学期大部分时间都花在这门课上了，大概内容就是量子力学1加原子物理，任课老师本来就是讲原子物理的，所以原子物理内容多一点。顺便看了点微分几何和表示论和经典力学（都不会）。
+
+
+## Chapter 2. Life before the quantum mechanics
+
+# Bohr model
+
+Assumption: Circle orbit, $$L=mvr=n\hbar$$
+
+We have: $$r=\frac{4\pi\epsilon_0n^2\hbar^2}{mZe^2},E=-\frac{mZ^2e^4}{32\pi^2\epsilon_0^2n^2\hbar^2}$$.
+
+# Special Relativity
+
+Motivation: invariance of speed of lights in inertial frame of reference.
+
+Main results:
+
+Time dilation:$$\Delta t=\frac{\Delta t'}{\sqrt{1-\beta^2}}$$(Einstein's train)
+
+Length dilation:$$l=\frac{l'}{\sqrt{1-\beta^2}}$$
+
+Corresponding transform group: Lorentz group. We can also define a invariant gram matrix diag(1,1,1,-1). Spatial coordinate:$$(x_1,x_2,x_3,ct)$$
+
+In order to make velocity a lorentz vector, we define a lorentz scalar $$dt_0$$ as the difference of the time on the body's world line. We define the volocity to be the $$\frac{dx}{dt_0}$$.
+
+Define energy as $$E=p_4c.(p=mu=\gamma m(v,c))$$. By the invarince of inner product, we have $$p^2-\frac{E^2}{c^2}=-mc^2$$.
+
+# Compton scattering
+
+
+$$mc^2+\frac{hc}{\lambda}=\frac{hc}{\lambda'}+\frac{mc^2}{\sqrt{1-\frac{v^2}{c^2}}}$$
+
+$$\frac{h^2}{\lambda^2}-\frac{h^2}{\lambda'^2}-\frac{h^2}{\lambda\lambda'}cos\theta=\frac{m^2v^2}{\sqrt{1-\frac{v^2}{c^2}}}$$
+
+# Reference 
+
+Classical Mechanics. John R. Taylor Chapter 15. Special Relativity
+
+
+
+
+## Chapter 3. Schrödinger Equation
+
+# De Broglie's Matter Waves
+
+$$\hbar\begin{pmatrix}k\\\omega\end{pmatrix}=\begin{pmatrix}p\\E\end{pmatrix}$$.
+
+# Schrödinger equation
+
+$$i\hbar\frac{\partial}{\partial t}\Psi=(\frac{p^2}{2m}+V)\Psi$$.
+
+Seperate r and t we get: $$i\hbar\frac{\dot{f}}{f}=\frac{(\frac{p^2}{2m}+V)\phi}{\phi}=E$$.
+
+
+# Probability current
+
+Note that $$\frac{\partial\Psi^* \Psi}{\partial t}=\Psi^* \frac{\partial\Psi}{\partial t}+\Psi\frac{ \partial\Psi^* }{\partial t}=\frac{i\hbar}{2m}(\Psi^* \nabla^2\Psi-\Psi\nabla^2\Psi^* )=\frac{i\hbar}{2m}\nabla\cdot(\Psi^* \nabla\Psi-\Psi \nabla\Psi^* )$$
+
+We define $$J=\Psi^* \nabla\Psi-\Psi \nabla\Psi^* $$ as the Probability current. For a plane wave $$exp(i(\omega t-kx))$$, $$J=\frac{\hbar k}{m}=v$$. For a particle trapped in one-dimensional trap, J=0.
+
+# Reference 
+
+[Harvard lecture notes on wave function](https://scholar.harvard.edu/david-morin/waves)
+
+[MIT 8.04 part 1](https://ocw.mit.edu/courses/physics/8-04-quantum-physics-i-spring-2016/lecture-notes/)
+
+## Chapter 4. One-dimensional Potentials Toy Example 
+
+# Basic facts
+
+Theorem 1: The bounded states in one-dimensional potentials is degenerate
+
+Proof: If we have $$H\Psi_1=E\Psi_1$$,$$H\Psi_2=E\Psi_2$$. That is $$\Psi_2H\Psi_1=\Psi_1H\Psi_2$$. $$\Psi_2\frac{\partial^2\Psi_1}{\partial x^2}=\Psi_1\frac{\partial^2\Psi_2}{\partial x^2}$$. $$\Psi_1\frac{\partial\Psi_2}{\partial x}=\Psi_2\frac{\partial\Psi_1}{\partial x}+C$$. Take x to $$\infty$$, We have C=0.
+
+Theorem 2: The energy eigenstate can always choose to be real
+
+Proof: For any energy eigenstate $$\Psi$$, take the conjugate of $$H\Psi=E\Psi$$. We find $$\Psi^* $$ is also an eigenstate. So $$(\Psi+\Psi^* )/2$$ and $$(\Psi-\Psi^* )/2i$$ are real eigenstate.
+
+
+Theorem 3: If the potential function has even parity, then the bounded eigenstate has eithe odd or even parity.
+
+Proof: For any energy eigenstate $$\Psi$$, let $$f=\Psi(-x)$$. $$f'=\Psi(-x)'=-\Psi'(-x)$$,$$f''=(-\Psi'(-x))'=\Psi''(-x)$$. $$Hf=-\hbar^2\Psi''(-x)/2m+V(x)\Psi(-x)=-\hbar^2\Psi''(-x)/2m+V(-x)\Psi(-x)=H\Psi(-x)=Hf$$. So $$f=c\Psi(x)$$. $$\Psi(x)=c^2\Psi(x)$$. c=-1 or 1.
+
+Theorem 4: If the potential function is finite , f and f' may be chosen to be continuous. If $$\int V$$ is finite , f may be chosen to be continuous.
+
+Proof: Haven't learn a rigorous one.
+
+# The Infinite Square Well and The Finite Square Well
+
+These potentials have even parity so its eigenstates may have **even or odd** parity.
+
+# Harmonic oscillator
+
+We can use a pure algebraic approch to derive its eigenstates. Since $$H=kx^2/2+p^2/2m=(\sqrt{k/2} x -ip/\sqrt{2m})(\sqrt{k/2} x+ip/\sqrt{2m})-i\omega[x,p]/2$$. Let $$a=(\sqrt{k/2} x+ip/\sqrt{2m})$$,$$a^\dagger=(\sqrt{k/2} x-ip/\sqrt{2m})$$. $$H=a^\dagger a +\hbar\omega/2$$. And we have $$[a^\dagger,a]=-i\hbar\omega$$.
+
+# Reference 
+
+[MIT 8.04 Part 2](https://ocw.mit.edu/courses/physics/8-04-quantum-physics-i-spring-2016/lecture-notes/)
+
+
+## Chapter 6. Central Potential
+
+# Hellmann-Feynman Theorem
+
+$$<\frac{\partial}{\partial\lambda}H>_ n=\frac{\partial}{\partial\lambda}E_n$$
+
+Proof: Note that $$\frac{\partial}{\partial\lambda}\vert\phi\vert^2=0$$
+
+# Virial Theorem
+
+$$2<T>=< r\cdot\nabla V/\hbar>$$
+
+Proof: By the Hellmann-Feynman Theorem, $$<\frac{\partial}{\partial\hbar}H>=2<T>=\frac{\partial E}{\partial\hbar}$$. In the momentum representation, $$<\frac{\partial}{\partial\hbar}H>=<\frac{\partial}{\partial\hbar}(\frac{p^2}{2m}+V(i\hbar\frac{\partial}{\partial p}))>=< r\cdot\nabla V/\hbar>$$.
+
+Remark: For homogeneous function V(r) with degree n, we have $$r\cdot\nabla V=nV$$. We have $$2<T>=n<V>$$
+
+# Orbital angular momentum
+
+Motivation: If V is a central potential function, the equtation of motion should be invariant under rotation of coordinate system. That is 
+$$i\hbar\frac{\partial\psi'}{\partial t}=i\hbar\frac{\partial U_R(\phi)\psi}{\partial t}=\partial U_R(\phi)i\hbar\frac{\psi}{\partial t}=U_R(\phi)H\psi=U_R(\phi)HU_R^{-1}(\phi)\psi'$$
+
+Here $$U_R$$ is the group repretation or rotation to be determined. That is $$U_R(\phi)HU_R^{-1}(\phi)=H$$. $$[U_R,L]=0$$. Let $${L_i}$$ be Lie-algebra of $$U_R$$, we also have $$[L_i,H]=0$$. Which means $$L_i$$ is preserved.
+
+There are two ways to calculate L:
+
+By the definition, $$L=r\times p$$. $$i\hbar(r,0,0)\times (\frac{\partial}{\partial r},\frac{1}{r}\frac{\partial}{\partial \theta},\frac{1}{rsin\theta}\frac{\partial}{\partial \phi})=i\hbar(\frac{1}{sin\theta}\frac{\partial}{\partial \phi} \vec{\theta}-\frac{\partial}{\partial \theta} \vec{\phi})$$.
+
+Or we note that the infinitesimal rotation vector can be write as $$r'=r+\delta\phi\times r$$. Then we use it to write $$L_x,L_y,L_z$$. $$U_R={-i\phi\cdot L/\hbar}$$
+
+# Angular momentum algebra
+
+The Orbital angular momentum J satisfies $$[J_i,J_j]=i\hbar \epsilon_{ijk}J_k$$. In fact it's the lie algebra commutation relations of SO(3). Use these relations we can easily represente J as direct sum of irreducible subrepresentation. 
+
+# Spin angular momentum
+
+Motivation: We want to find rotation transform group w.r.t Pauli equation (can be derived in both nonrelativistic and relativistic way). The following properties of Pauli matrix is what we need:
+
+$$I,\sigma_i$$ an orthogonal basis of $$L(C^2)$$, with the inner product $$<A,B>=Tr(AB)$$.
+
+$$\sigma_i\sigma_j=\delta_{ij}I+i\hbar\epsilon_{ijk}\sigma_{k}$$ 
+
+
+$$(\sigma\cdot A)(\sigma\cdot B)=(A\cdot B)I+i\hbar(A\times B)\sigma$$ 
+
+$$exp(-i\phi\cdot S/\hbar)=cos(2\phi)I-sin(2\phi)n\cdot \sigma$$ 
+
+# Reference 
+
+[MIT 8.04 Part 3](https://ocw.mit.edu/courses/physics/8-04-quantum-physics-i-spring-2016/lecture-notes/)
+
+
+[MIT 8.05 18-26](https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/)
+
+Quantum Mechanics: Symmetries. Walter Greiner, Berndt Müller. Chapter 1,2
+
+
+## Chapter 7. 1/2-Spin and Coupling
+
+# Coupling of angular momentum opeartor 
+
+Motivation: In many-particle states, the angular momentum for a single particle is no longer preserved, but sum of them are well-defined and perserved.
+
+For two momentum opertors that are defined at different linear space, we defien $$J=J_1+J_2$$ in the direct product of two spaces, and J is still a angular momentum. 
+
+# Stern–Gerlach experiment
+
+Stern sent Ag atom through an inhomgeneous magnetic field and observing their deflection. The particles beams split into two. Since Ag atom has no orbital angular momentum. This experiment demonstrated the spacital orientation of augular momentum is quantized.
+
+# Zeeman Effect
+
+Due to the total angular momentum of atom, it will has potential in magnitic fields. The energy level will be splited. The potential can be written as $$\frac{\mu_B(g_lL+g_sS)B}{\hbar}$$.
+
+# Spin orbit coupling
+
+The spin-orbit interaction has a classical physical graph. 
+
+# Reference 
+
+Quantum Mechanics: Symmetries. Walter Greiner, Berndt Müller. Chapter 1,2
+
+[MIT 8.06 Chapter 2](https://ocw.mit.edu/courses/physics/8-06-quantum-physics-iii-spring-2018/lecture-notes/MIT8_06S18ch2.pdf)
+
+朱林繁，彭新华. 原子物理学. Chapter 3
+
+## Chapter 8. Periodic law of elements
+
+# Pauli exclusion principle
+
+Pauli exclusion principle suggests that the wave function of electron should be antisymmetric. Togather with Principle of minimum energy, we can find the group state for every elements.
+
+# Hund's rule 
+
+Hund's rule based on empirical evidence. Give 3 rules to find lowest energy state.
+
+# Slater determinant
+
+[My Term Paper on Slater's table](/assets/pdf/qm_term_paper.pdf)
+
+# Reference 
+
+朱林繁，彭新华. 原子物理学. Chapter 3
+
+## Chapter 9-10. Perturbation Theory
+
+Nothing physical. And not mathmatically rigorous. 
+
+
+# Reference 
+
+[MIT 8.06 Chapter 1](https://ocw.mit.edu/courses/physics/8-06-quantum-physics-iii-spring-2018/lecture-notes/MIT8_06S18ch1.pdf)
+
+[MIT 8.06 Chapter 4](https://ocw.mit.edu/courses/physics/8-06-quantum-physics-iii-spring-2018/lecture-notes/MIT8_06S18ch4.pdf)
+
+
+## Reference 
+
+教材就看过一本，还是最后复习看的- -：
+
+Quantum mechanics： An introduction. Walter Greiner, D.A. Bromley.
+
+这些讲义按课程顺序读就行了：
+
+[中科大杨老师的量子力学A讲义](http://staff.ustc.edu.cn/~hyang/) 优点是会给很多严谨的证明
+
+[我们学校季老师的量子力学讲义](http://zimp.zju.edu.cn/~tcmp/refpdf/QM_JiYJ.pdf) 没怎么读，看起来还可以。
+
+[PKU曹老师的量子力学A讲义](http://www.phy.pku.edu.cn/~qhcao/Class/qm/index_QM_A18.html) 中规中矩，耦合算了个具体例子还可以。PKU的讨论班看起来挺不错的。
+
+[MIT 8.05](https://ocw.mit.edu/courses/physics/8-04-quantum-physics-i-spring-2016/lecture-notes/)
+
+[MIT 8.06](https://ocw.mit.edu/courses/physics/8-05-quantum-physics-ii-fall-2013/lecture-notes/)
+
+[MIT 8.07](https://ocw.mit.edu/courses/physics/8-06-quantum-physics-iii-spring-2018/lecture-notes/)
+
+MIT三部曲，写的很详细，没啥好说的，都读一遍就行了
+
+
+下面的讲义和书按学习进度排序：
+
+[Harvard的波函数讲义](https://scholar.harvard.edu/david-morin/waves) 专门讲波函数的讲义，从连续介质到电磁场到量子力学，读一遍有助于了解波函数中的各种概念
+
+Classical Mechanics. John R. Taylor 适合学数学的经典力学书，把经典物理中的一些物理图像和概念过一遍
+
+The geometry of physics: An introduction. Theodore Frankel. 一本讲微分流形的物理书，太长了，就读了前几章，搞明白流形上的算符是怎么回事就行了。（b站上有个讲微分几何的也还不错）
+
+[特仑苏陶关于Distribution的文章](https://terrytao.wordpress.com/2009/04/19/245c-notes-3-distributions/)
+
+[mit的关于Dirac函数的note](http://web.mit.edu/8.323/spring08/notes/ft1ln04-08-2up.pdf)
+
+[一篇关于为什么要引进Rigged Hilbert Space的文章](https://arxiv.org/pdf/quant-ph/0502053.pdf)
+
+[Generalized eigenvectors and the nuclear spectral theorem](https://link.springer.com/chapter/10.1007/3-540-51916-5_5#citeas)
+
+从数学观点看物理世界. 马天. 一本介绍物理中的各种思想的书，像我这种数学水平低的就当科普读了，可以大概了解量子力学中一些方程的出发点。
+
+[PKU的一篇介绍对称性的文章](http://www.phy.pku.edu.cn/~qhcao/resources/class/QM_panel_13/symmetry.pdf)
+
+[量子力学与表示论](https://scholar.harvard.edu/files/noahmiller/files/representation-theory-quantum.pdf) 好文，极力推荐
+
+Quantum Mechanics: Symmetries. Walter Greiner, Berndt Müller. 好书，专门讲对称性，前三章就够用了。
+
+[中科大物质结构导论 Ch1](http://staff.ustc.edu.cn/~xjwu/qc/teaching/book/Chapter1.pdf) 严格的数学推导，中科大NB
+
+[朱林繁的原子物理讲义](http://staff.ustc.edu.cn/~lfzhu/Atom%20Physics/%B5%DA%C8%FD%D5%C2ppt.pdf) 
+
+原子物理学. 朱林繁，彭新华. 两个差不多，还是看书吧，讲义排版有点乱
+

@@ -1,0 +1,163 @@
+---
+layout: post
+title:  "Functional Analysis for Probability and Stochastic Processes"
+date:   2020-02-05 21:09:14 +0800
+categories: math
+---
+
+2020.02.05
+
+勃勃洛夫斯基这书内容很好，就是typo太多了，有时候真的很影响阅读体验。第三章中Martingale内容有点割裂，后面那些停时搞了半天不知道内在联系在哪。
+
+2020.02.11
+
+KMN!
+
+t退役统计选手的苦逼，cc98上的学长、勃勃洛夫斯基，害的我出了读书事故，把我搞得半死不活。在没学泛函之前，还能证明几个定理。现在一看到拓扑定理就头晕，全身都冷而硬。这样的庸书留着有何用！
+
+## Basic functional analysis theorem
+
+Define the q-norm of a function: $$\|f\|_ p=(\int \vert f\vert^p dx)^{\frac1p}$$
+
+# Hölder Inequality 
+
+$$\|fg\|_ 1\leq\|f\|_ p\|g\|_ q\$$ 
+
+Remark: Young inequality $$ab\leq \frac{a^p}{p}+\frac{b^q}{q}$$ is helpful.
+
+
+
+## Conditional expectation as projection in Hilbert space
+
+# Definition
+
+If there exists a $$\mathcal{G}-$$measurable random variable Y satisfies: $$\int_A YdP=\int_A XdP$$, for any $$A\in\mathcal{G}$$. We define $$E(X\vert\mathcal{G})=Y$$. It's easy to prove conditional expectation is unique.
+
+# In which subspace
+
+Suppose that $$\mathcal{G}$$ is a sub $$\sigma$$-algebra of $$\mathcal{F}$$. Some naive students (like me) may treat $$L^p(\Omega,\mathcal{G},P)$$ as the subspace of $$L^p(\Omega,\mathcal{F},P)$$. However, $$L^p(\Omega,\mathcal{G},P)$$ may even fails to be a subset of $$L^p(\Omega,\mathcal{F},P)$$. The correct statement is that $$L^p(\Omega,\mathcal{G},P)$$ is isometrically isomorphic to a subspace of $$L^p(\Omega,\mathcal{F},P)$$, which consists of all the equivalence class whose representatives is a $$\mathcal{G}$$-measurable function that is integrable with pth power.
+
+# Projection in $$L^2$$ space.
+
+Take the advantage of Hilbert Space, we now can explore the projection's properties in probability theory. Since $$E((X-E(X\vert\mathcal{G}))1_{A})=0$$ for all $$A\in \mathcal{G}$$. We have$$\int_A X dP=\int_A E(X\vert\mathcal{G}) dP$$. This equivalent condition is the definition of conditional expectation.
+
+## Extension in $$L^1$$
+
+# Markov operator
+
+A operator P in $$L^1$$ is a Markov operator if:
+
+1 $$x\geq0\implies Px\geq0$$
+
+2 $$\int_{\Omega} Px d\mu=\int_{\Omega} x d\mu$$.
+
+If P has defined in a linear space Y such that $$max(x,0) \in Y$$ for every $$x \in (Y)$$, then P has an unique extension (denoted by same letter) in cl(Y), which preserve properties 1 and 2.
+
+Proof outline: By the Hahn-Banach theorem, every bounded operator has a unique extension that preserves the operation norm in it's domain's closure. First we want to prove P is a contraction. Now $$P(x^+)+P(x^-)=P(x)$$ ($$P(x^+)$$ is well-defined because $$max(x,0) \in Y$$), $$(P(x))^+=max(P(x),0)\leq max(P(x^+),0)=P(x^+)$$. Now $$(P(x))^++(P(x))^-\leq P(x^+)+P(x^-)=P(x)$$, that is $$\|P(x)\|_ 1\leq \|X\|_ 1$$. Now we extend it ...
+
+# Existence of conditional expectation
+
+Since $$L^2$$ space is dense in $$L^1$$(think about the simple function), and the projection that we define above is a Markov operator. We can extend it to $$L^1$$ and preserving $$\int_\Omega X dP=\int_\Omega E(X\vert\mathcal{G}) dP$$ ($$L^1$$ converge).
+
+From the perspective of projection, we can prove many properties easily. Like $$ E(E(X\vert G)\vert H) = E(E(X\vert H)\vert G) = E(X\vert H)$$.
+
+# Conditional independence
+
+Conditional independence is the key concept of Markov chains. Let $$A\in \mathcal{G},B\in \mathcal{F}$$ the following 3 definition are equivalent:
+($$\mathcal{I}\subset \mathcal{F}\cap\mathcal{G}$$ so the conditional expectation is well defined)
+
+1. $$P(A\cap B\vert\mathcal{I})=P(A\vert\mathcal{I})P(B\vert\mathcal{I})$$
+
+2. $$P(B\vert\mathcal{G})=P(B\vert\mathcal{I})$$
+
+3. $$P(A\vert\mathcal{F})=P(A\vert\mathcal{I})$$
+
+
+## Application of conditional expectation
+
+# Convergence of self-adjoint operators
+
+By the definition of positive definite, we define a partial order at the set of self-adjoint operators. The convergence theorem of self-adjoint operators are just like those for monotone bounded series in R. 
+
+If $$A_n$$ is a sequence of self-adjoint operators in a Hilbert space H, such that $$A_n ≤ A_{n+1} ≤ MI$$, for all natural n, where M is a constant and Ix = x, then there exists the strong limit $$Ax = lim_{n→∞}  A_n x $$ of $$A_n$$
+and A is self-adjoint.
+
+Proof outline: For any given y,limit $$<A_nx,y>$$ exists since $$<A_nx,x>$$ monotone and bounded. The Riesz representation theorem tell us there exists $$<Ax,y>=lim<A_nx,y>$$. The linearity, and self-adjoint can be checked by this equation. Now $$\| (A-A_n)x \| =<(A-A_n)^2x,x>\neq 2M<(A-A_n)x,x>\to 0$$
+
+With this theorem, we can find $$B^2=A$$. (Note that by the spectrum theorem we can only find the square root of compact operators.)
+
+
+Corollary: Let $$P_n$$ be the projection of an increasing sequence of subspaces of a subspace $$H_n$$. Since $$P_n$$ are contraction and self-adjoint, it converge strongly to some self-adjoint operators $$P_\infty$$. Moreover, $$P_\infty$$ is a projection to $$cl(\cup H_n)$$.
+
+Remark: Since $$(P_{n+1}-P_n)x\perp P_nx$$, $$P_nx$$ are uniformly $$L^2$$ bounded hence $$L^1$$ bounded. So $$P_nx$$ converge a.s. So the $$L^1$$ converge implies $$P_nx\to P_\infty x$$ a.s.
+
+# Discrete martingale
+
+Upcrossing Inequality: $$(b − a)E U_n  ≤ E\vert X_n \vert + a.$$
+
+This famous inequality is used to prove the convergence theorem of (sub)martingale: If a martingale is absolutely uniformly bounded, then it will converge to some absolutely integrable random variable a.s. If this martingale is also uniformly integrable, the converge also in $$L^1$$.
+
+## Convergence of probability measures
+
+# Topology on measures space
+
+The topology induced by the operator norm is 'too strong to capture such delicate phenomena like the Central Limit Theorem'. The new topology that we defined, which is called weak and weak* topology, are coarser than the strong topology.
+
+Weak topology:
+
+Let V be a normed vector space. The weak topology is the smallest topology that let all bounded functional f be continuous. By Hahn-Banach theorem, it's a Hausdorff space. So it's easy to check $$x_n\to x$$ iff $$f(x_n)\to f(x)$$ for all $$f\in V'$$.
+
+Weak* topology:
+
+Let V be a normed vector space, so V is isomorphic to a subspace of V''. The weak* topology is the smallest topology defined on V' that let all element in V be continuous. By Hahn-Banach theorem, it's a Hausdorff space. So it's easy to check $$f_n\to f$$ iff $$f_n(x)\to f(x)$$ for all $$x\in V$$.
+
+# Some dual space
+
+$${L^p(\mu)}'\cong L(\mu)^{p'}$$ ($$p\geq 1$$,$$\mu\,\sigma$$-finite)
+
+Remark: The proof can be simplified by showing every bounded functional on space $L^p$$$ can be written as difference of two positive bounded functional. 
+
+$$(C[0,1])' \cong \mathcal{BM}([0,1])$$.
+
+Pf: Since C[0,1] is a subspace of BM[0,1]. The functional can be extended to a bounded functional in BM[0,1] by the Hahn-Banach theorem. Now let $$f(t)=F([0,t))$$, then $$f$$ (after regulation) correspond to a signed measure on [0,1]. By the Riemann–Stieltjes integral we can show two functional agree on C[0,1].
+
+In general, the Riesz theorem describe the dual space of $$C[S]_ C$$ and $$C[S]_ 0$$ if S is a locally compact topological space.
+Moreover, $$(C(R)_ 0)' \cong \mathcal{BM}(R)$$
+
+# Convergence of measure on R
+
+On the one hand, R have compactification so we can discuss this measure is a compact space. On the other hand, R is a separated metric space, which make the weak* topology owns good property such like compactness.
+
+
+T1: A sequence $$µ_n$$ of probability measures on R converges to a probability measure µ in the weak∗ topology iff the corresponding operators $$T_{µ_n}$$ in C[−∞,∞] converge strongly to $$T_µ$$.
+
+Pf: The if part is trivial. By proving $$T_{\mu_n}$$ is equally-continuous and bounded, the Arzela–Ascoli theorem tell us every there exists subsequence converge. Since $$T_{\mu_n}(x)$$ converge pointwise, we can prove the uniform convergence.
+
+Remark: Noting that the function are two order differential continuous is a dense set in $$C[-\infty,\infty]$$. We prove central limit Theorem as a corollary. All we need is to prove $$a_n^{-2}(T_{a_nX}x-x)\to x''$$ whenever $$EX=0;EX^2=1;a_n\to 0$$ and x is two order differential continuous in $$[-\infty,\infty]$$. 
+
+T2: Let S be a compact topological space. Any sequence of probability measures on S there exists a subsequence converging to a probability measure on S.
+
+Pf: It's a corollary of Alaoglu’s Theorem. Note that the limit is non-negative and map $$1_S$$ to 1 hence a probability measure.
+
+Given a homeomorphism between S and S', we can establish a 1-1 correspondence between Borel measures on S and on S'. Besides it's also a homeomorphism between the weak* topologies on measure spaces. Now we have:
+
+Prohorov’s Theorem: Suppose a sequence of Borel probability measures on a separable metric space S is tight. Then, it is relatively compact.
+
+Pf: It's a corollary of Urysohn’s Theorem.
+
+
+
+
+## Reference 
+
+
+Functional Analysis for Probability and Stochastic Processes. Adam Bobrowski
+
+
+## Some topology theorem
+
+Tichonov’s Theorem
+
+Alaoglu’s Theorem
+
+Urysohn’s Theorem
