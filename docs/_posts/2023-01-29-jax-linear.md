@@ -12,23 +12,26 @@ date: 2023-01-29 11:00 +0800
 from flax import linen as nn
 import jax.random as random
 ```
-这两个库相当于，torch.nn和numpy.random。
+Flax的库linen类似于PyTorch的nn，而jax.random与numpy的random类似。
+
+接下来，我们可以创建一个简单的神经网络模型：
 ```
 model = nn.Dense(features=1)
 ```
-相当于在torch中，使用`torch.nn.Linear(n,1)`,这里不用指定输入维度，是因为我们在后面的model.init中可以推断出输入的维度。
+这相当于在PyTorch中使用torch.nn.Linear(n, 1)，但是我们不需要明确指定输入维度，因为我们在后面的model.init中可以根据输入数据推断出输入的维度。
 
+然后我们生成一些伪随机数：
 ```
 seed=0
 key=random.PRNGKey(seed)
 key1, key2 = random.split(key)
 x = random.normal(key1, (100,1,))
 ```
-一个典型的伪随机数是迭代生成的。
+在Jax中，随机数是无状态的，所以我们需要一个key参数来生成随机数，我们可以通过random.split不断递归生成新的key。
 
-jax中的随机数和numpy中的随机数区别是jax中的random函数是无状态的，所以每次执行都需要一个key参数，由于纯函数的性质，给定相同的key和形状参数，生成的随机数都是相同的。我们可以通过random.split不停的递归生成新的key。
-
-
+一个典型的伪随机数是迭代生成的。jax中的随机数和numpy中的随机数区别是jax中的random函数是无状态的，所以每次执行都需要一个key参数，由于纯函数的性质，给定相同的key和形状参数，生成的随机数都是相同的。我们可以通过random.split不停的递归生成新的key。
+  
+接下来，我们初始化模型的参数：
 ```
 params = model.init(key2, x) # Initialization call
 jax.tree_util.tree_map(lambda x: x.shape, params)
