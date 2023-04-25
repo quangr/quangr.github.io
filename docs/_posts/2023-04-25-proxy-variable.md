@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Making Inferences with Proxy Variables: Unpacking the Complexity of Casual Inference
+title: Making Inferences with Proxy Variables
 date: 2023-04-25 18:56 +0800
 ---
 
